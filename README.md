@@ -31,7 +31,7 @@ This spikes out a rather sophisticated set of tools and conventions to allow for
 
 
 ### Vanilla-extract
-theme.css.ts
+[theme.css.ts](https://github.com/georgialoper/vanilla-extract-playground/blob/main/src/styles/theme.css.ts)
 
 Vanilla-extract is a JavaScript package that allows us, in very brief, to compose CSS styles using TypeScript and apply those stylings to React components. In other words, rather than relying on a separate CSS/SCSS file and the preprocessing required to translate SCSS to CSS, minify, etc., vanilla-extract allows for writing JavaScript/TypeScript objects straight into React code, and webpack combined with vanilla-extract handles the bundling, preprocessing, etc. One of the major benefits is that we can type our styling variables (i.e., naming them according to the design tokens our designers use in Figma) and get yelled at by TypeScript if a consumer of the component fails to reference those variables correctly in the appropriate context. Check out, for instance, how this creates styling for the Link component:
 
@@ -92,7 +92,7 @@ return (
 You'll notice above that values in the derived string are custom CSS variables rather than derived string values (as in SCSS -> CSS). This is a core feature of vanilla-extract and, while this spike don't currently demonstrate the full capabilities of this, you can imagine how trivial this makes features like custom theming, dark/light mode, accessibility themes, etc. In other words, instead of creating a new set of CSS classNames for alternate themes, we will ultimately have the ability to simply change the custom CSS variables at runtime to generate a new theme.
 
 ### Sprinkles
-sprinkles.css.ts
+[sprinkles.css.ts](https://github.com/georgialoper/vanilla-extract-playground/blob/main/src/styles/sprinkles.css.ts)
 
 The other side of this spike's styling coin is vanilla-extract's sprinkles extension. In short, sprinkles allows for the creation of custom utility classes based off of global CSS variables (defined in `/styles/themes.css.ts`) with built-in syntax for responsiveness, theming, and other variable capabilities. Think Tailwind, but instead of remembering and writing string CSS classNames, we're able (as with vanilla-extract) to simply to reference relevant styles by our design token names. This is challenging to explain in the abstract, so here's a code example:
 
@@ -136,7 +136,7 @@ So, what do we get for all this complexity? There are a few major benefits:
 That said, while the above demonstrates a possible use of 'atomic' styles generated through the sprinkles library, it should be rare that anyone actually implements styling in this way. These atomic styles are the powerhouse of one of the other design choices in this spike, the <Box>.
 
 ### The `<Box />`
-Box.tsx
+[Box.tsx](https://github.com/georgialoper/vanilla-extract-playground/blob/main/src/components/Box/Box.tsx)
 
 Following some patterns that can be seen in the Chakra UI design system, this creates a React component, `<Box>`, to encapsulate some of the complexity of the above styling system and expose it in a sane way. A broad definition of this component's purpose is: the `<Box>` is a 'blank' React component that can resolve into any HTML tag the developer wants and that exposes all possible styling keys (alignItems, display, color, etc.) as top-level props and all possible styling values ('center', 'block', 'primary', etc.) as the possible values of those keys (with TypeScript support, of course). What does that mean? Take the following implementation example:
 
